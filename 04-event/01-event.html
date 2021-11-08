@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        // 事件 高级功能通常通过类来实现
+        class Demo extends React.Component {
+            show() {
+                console.log('点击事件');
+            }
+
+            // 为什么要_
+            _onBlur() {
+                console.log('失去焦点')
+            }
+
+            // Cannot read property 'name' of undefined
+            name = '测试';
+            // 普通函数中的this 
+            // 函数是谁调用的,this 就指向谁 obj.name
+            showName() {
+                console.log(this.name)
+            }
+
+            // 实际是一个属性
+            showName1 = () => {
+                console.log(this.name);
+            }
+
+            render() {
+                // 事件绑定 加括号和不加括号的区别
+                // 在react中 ,{}中的代码会直接执行,不会等到点击事件
+                
+                return (
+                    <div>
+                        <button onClick={this.show}>点击事件</button>
+                        {/* JSX 要求 XML标签必须闭合*/}
+                        <input type='text' onBlur={this._onBlur}/>
+                        {/* 强制替换 showName 中的this - this默认指向window,谁触发的 this就是谁 -
+                         bind-直接替换this,call()-替换的同时执行一次函数,apply- {} 中的代码会直接执行 */}
+                        <button onClick={this.showName.bind(this)}>showName</button>
+
+                        {/*箭头函数this 不是谁调用就是谁,而是与声明时一致 
+                        点击时,执行箭头函数,箭头函数在执行里面的函数*/}
+                        <button onClick={() => this.showName()}>showName2</button>
+                        <button onClick={this.showName1}>showName3</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Demo/>,root);
+    </script>
+</body>
+</html>

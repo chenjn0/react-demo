@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <hand>
+        <meta charset="utf-8">
+        <meta name="viemport" content="with=device-width,inital-scale=1.0">
+        <title>Document</title>        
+    </hand>
+    <body>
+        <h1>Hello React!</h1>
+        <div id="root"></div>
+        <script>
+            // 小结: 一个标签一个对象,她有属性,值以及添加子节点等操作
+            // 显示当前时间
+            // <h3 class="danger" id='time'>当前时间:xxxx</h3>
+            // 添加到 id = root 标签中
+            // 原生DOM
+            // 1. 获取当前时间
+            let now = new Date().toLocaleTimeString();
+            // 2. 制作出H3标签
+            let h3 = document.createElement('h3');
+            h3.className = "danger"
+            h3.id='time';
+            h3.innerText = '当前时间:' + now;
+            // 3. 添加到id='root'的元素中
+            let root = document.getElementById('root');
+            root.appendChild(h3);
+        </script>
+    </body>
+</html>

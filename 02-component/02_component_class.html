@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 类组件 比如继承父类-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class HelloWorld extends React.Component {
+            // 固定方法 语法糖 转换时,固定调用
+            render(){
+                return <h1>class read</h1>;
+            }
+        }
+
+        ReactDOM.render(new HelloWorld().render(),root);
+        // 语法糖写法 
+        ReactDOM.render(<HelloWorld/>,root);
+    </script>
+</body>
+</html>

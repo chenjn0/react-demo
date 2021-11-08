@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- type=text/babel 代表此脚本,必须在babel编译后才能使用 -->
+    <script type="text/babel">
+        // 显示当前时间
+            // <h3 class="danger" id='time'>当前时间:xxxx</h3>
+            // 添加到 id = root 标签中
+            // JSX 在JS 中XML格式的DOM代码
+            // 1. 获取当前时间
+            let now = new Date().toLocaleTimeString();
+            // 2. 制作出H3标签 JSX 属于特殊语法 不被浏览器认知  
+            // babel -> JSX 翻译成可以被浏览器认知的语法 {变量}
+            let h3 = (
+                <h3 className='danger' id='time'>当前时间:{now}</h3>
+            );
+            // 3. 添加到id='root'的元素中
+            ReactDOM.render(h3,root);
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='root'></div>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <script type="text/babel">
+        class Demo extends React.Component {
+            
+            // 名字固定的
+            state = {
+                count: 1
+            }
+            // 用于事件绑定的方式 加 _ 区分普通方法
+            _onAdd() {
+                // 修改数据 + 修改UI => setState 异步性导致 多线程
+                // setState({},渲染成功后,回调函数)
+                this.setState({
+                    count: this.state.count + 1
+                },()=>{console.log('回调函数:' + this.state.count)})
+                console.log(this.state.count);
+            }
+
+            render() {
+                return (
+                    <div>
+                        <div>{this.state.count}</div>
+                        <button onClick={this._onAdd.bind(this)}>点击事件</button>
+                    </div>
+                )
+            }
+
+            
+        }
+
+        ReactDOM.render(<Demo/>,root);
+    </script>
+</body>
+</html>
